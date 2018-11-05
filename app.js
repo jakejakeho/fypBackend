@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const privacyRoutes = require('./api/routes/privacy');
+const pingRoutes = require('./api/routes/ping');
 global.rootDir = path.resolve(__dirname);;
 
 mongoose.connect('mongodb://jake:jake@localhost:27017/dev?authSource=admin'
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/privacy', privacyRoutes);
+app.use('/ping', pingRoutes);
 
 
 app.use((req, res, next) => {
