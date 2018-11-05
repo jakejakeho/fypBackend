@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USERNAME" : "jake",
+        "MONGO_PW" : "jake",
+        "MONGO_IP" : "localhost:27017/dev?authSource=admin"
+    }
+}
