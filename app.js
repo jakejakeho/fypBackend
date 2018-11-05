@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const certRoutes = require('./api/routes/cert');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const privacyRoutes = require('./api/routes/privacy');
@@ -15,6 +16,7 @@ mongoose.connect('mongodb://jake:jake@localhost:27017/dev?authSource=admin'
     ,{useNewUrlParser:true});
 
 
+// app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -31,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-
+app.use('/.well-known/acme-challenge/', certRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/privacy', privacyRoutes);
