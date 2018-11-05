@@ -10,13 +10,8 @@ const orderRoutes = require('./api/routes/orders');
 const privacyRoutes = require('./api/routes/privacy');
 global.rootDir = path.resolve(__dirname);;
 
-mongoose.connect('mongodb://' 
-        + process.env.MONGO_USERNAME 
-        +':'
-        + process.env.MONGO_PW
-        + '@'
-        + process.env.MONGO_IP
-        ,{useNewUrlParser:true});
+mongoose.connect('mongodb://jake:jake@localhost:27017/dev?authSource=admin'
+    ,{useNewUrlParser:true});
 
 
 app.use(morgan('dev'));
@@ -35,9 +30,11 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-app.use('/privacy', privacyRoutes);
+
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/privacy', privacyRoutes);
+
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
