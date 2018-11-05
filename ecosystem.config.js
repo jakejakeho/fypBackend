@@ -10,7 +10,7 @@ module.exports = {
     watch: false,
     max_memory_restart: '1G',
     env: {
-	  HTTP_PORT: '3000',
+	  HTTP_PORT: '80',
 	  HTTPS_PORT: '443',
     },
     env_production: {
