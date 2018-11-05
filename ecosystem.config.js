@@ -11,7 +11,7 @@ module.exports = {
     max_memory_restart: '1G',
     env: {
 	  PORT: '3000',
-	  "windowsHide":true
+	  "windowsHide":true 
     },
     env_production: {
       NODE_ENV: 'production'
