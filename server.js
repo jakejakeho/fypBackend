@@ -18,8 +18,7 @@ const httpsServer = https.createServer(credentials, app);
 httpServer.listen(HTTPPort, () => {
     console.log('HTTP Server running on port' + HTTPPort);
 });
-console.log(HTTPSPort);
-if(typeof yourvar !== 'undefined' ){
+if(typeof HTTPSPort !== 'undefined'){
     httpsServer.listen(HTTPSPort, () => {
         console.log('HTTPS Server running on port' + HTTPSPort);
     });
