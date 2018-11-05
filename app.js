@@ -35,9 +35,9 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
+app.use('/privacy', privacyRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
-app.use('/privacy', privacyRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
