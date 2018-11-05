@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const privacyRoutes = require('./api/routes/privacy');
-global.__basedir = __dirname;
+global.rootDir = path.resolve(__dirname);;
 
 mongoose.connect('mongodb://' 
         + process.env.MONGO_USERNAME 
