@@ -10,8 +10,8 @@ module.exports = {
     watch: false,
     max_memory_restart: '1G',
     env: {
-	  PORT: '3000',
-	  "windowsHide":true 
+	  HTTP_PORT: '3000',
+	  HTTPS_PORT: '443',
     },
     env_production: {
       NODE_ENV: 'production'
