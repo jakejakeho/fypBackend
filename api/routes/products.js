@@ -25,6 +25,7 @@ router.post('/', (req, res, next) => {
         name: req.body.name,
         price: req.body.price
     });
+    console.log(product);
     product.save().then(result => {
         console.log(result);
         res.status(201).json({
