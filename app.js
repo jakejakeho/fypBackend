@@ -12,7 +12,7 @@ const privacyRoutes = require('./api/routes/privacy');
 const pingRoutes = require('./api/routes/ping');
 global.rootDir = path.resolve(__dirname);;
 
-mongoose.connect('mongodb://jake:jake@localhost:27017/dev?authSource=admin'
+mongoose.connect('mongodb://jake:jake@jakess.asuscomm.com:27017/dev?authSource=admin'
     ,{useNewUrlParser:true});
 
 
