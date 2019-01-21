@@ -24,7 +24,7 @@ module.exports = {
       host : 'FYPBACKEND.MOOO.COM',
       ref  : 'origin/master',
       repo : 'hojakejake@github.com:fypBackend.git',
-      path : '/etc/fyp/fypBackendd',
+      path : '/etc/fyp/fypBackend',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
