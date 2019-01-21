@@ -20,7 +20,7 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'root',
+      user : 'deploy',
       host : 'FYPBACKEND.MOOO.COM',
       ref  : 'origin/master',
       repo : 'git@github.com:hojakejake/fypBackend.git',
