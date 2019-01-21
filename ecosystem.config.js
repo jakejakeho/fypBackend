@@ -5,7 +5,7 @@ module.exports = {
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     args: 'one two',
-    instances: 1,
+    instances: 4,
     autorestart: true,
     watch: false,
     max_memory_restart: '1G',
@@ -20,11 +20,11 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'node',
-      host : '212.83.163.1',
+      user : 'root',
+      host : 'fypbackend.mooo.com',
       ref  : 'origin/master',
-      repo : 'git@github.com:repo.git',
-      path : '/var/www/production',
+      repo : 'hojakejake@github.com:fypBackend.git',
+      path : '/home/deploy/fypBackend',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
