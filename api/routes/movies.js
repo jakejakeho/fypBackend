@@ -23,9 +23,10 @@ router.get('/', (req, res, next) => {
 // get movie by id
 router.get('/:movieId', (req, res, next) => {
     const id = req.params.movieId;
-    Movie.findOne({moveID:id})
+    Movie.findOne({ movieId: id })
         .exec()
         .then(doc => {
+            console.log("id = " + id);
             console.log("From database" + doc);
             if (doc) {
                 res.status(200).json(doc);
