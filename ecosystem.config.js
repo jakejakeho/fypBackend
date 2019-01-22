@@ -20,11 +20,11 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'deploy',
+      user : 'root',
       host : 'FYPBACKEND.MOOO.COM',
       ref  : 'origin/master',
       repo : 'git@github.com:hojakejake/fypBackend.git',
-      path : '/home/deploy/production/fypBackend',
+      path : '/home/root/production/fypBackend',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
