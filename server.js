@@ -12,6 +12,10 @@ const options = {
     key: fs.readFileSync('./cert/privkey.pem')
 };
 
+// DDNS update
+request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
+});
+
 const DDNSUpdater = setInterval(function () {
     request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
         // console.log('error:', error); // Print the error if one occurred
