@@ -7,11 +7,13 @@ const mongoose = require('mongoose');
 
 const movieRoutes = require('./api/routes/movies');
 global.rootDir = path.resolve(__dirname);;
-
-mongoose.connect('mongodb://admin:awesomefyp@fypbackend.mooo.com:27017/dev?authSource=admin'
+if(process.env.HTTP_PORT){
+    mongoose.connect('mongodb://admin:awesomefyp@localhost:27017/dev?authSource=admin'
     ,{useNewUrlParser:true});
-
-
+}else{
+    mongoose.connect('mongodb://admin:awesomefyp@fypbackend.mooo.com:27017/dev?authSource=admin'
+    ,{useNewUrlParser:true});
+}
 // app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
