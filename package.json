@@ -21,6 +21,7 @@
     "mongoose": "^5.3.9",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.9",
+    "oauth2-server": "^3.0.1",
     "request": "^2.88.0"
   }
 }
