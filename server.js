@@ -3,12 +3,7 @@ const http = require('http');
 const https = require('https');
 const request = require('request');
 
-// DDNS update
-request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
-});
+
 
 const app = require('./app');
 const HTTPPort = process.env.HTTP_PORT || 3000;
@@ -19,13 +14,18 @@ const options = {
     key: fs.readFileSync('./cert/privkey.pem')
 };
 
-
+// DDNS update
+request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+});
 
 const DDNSUpdater = setInterval(function () {
     request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('body:', body); // Print the HTML for the Google homepage.
+        // console.log('error:', error); // Print the error if one occurred
+        // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        // console.log('body:', body); // Print the HTML for the Google homepage.
     });
 }, 1000);
 
