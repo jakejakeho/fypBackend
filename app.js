@@ -14,7 +14,7 @@ const registerRoutes = require('./api/routes/register');
 
 app.oauth = new OAuth2Server({
 	model: require('./oauthModel.js'),
-	accessTokenLifetime: 60 * 60 * 24 * 7,
+	accessTokenLifetime: 60 * 60 * 24 * 21,
 	allowBearerTokensInQueryString: true
 });
 
