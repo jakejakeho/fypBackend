@@ -6,11 +6,11 @@ const Movie = require('../models/movie')
 
 // get add movies
 router.get('/', (req, res, next) => {
-    Movie.find()
+    Movie.find({"movieId": {"$lt": 9}})
         .exec()
         .then(docs => {
             console.log(docs);
-            res.status(200).json(docs);
+            res.status(200).send(docs);
         })
         .catch(err => {
             console.log(err);
