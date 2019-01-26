@@ -15,20 +15,21 @@ const options = {
 };
 
 // DDNS update
-request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
-});
-
-const DDNSUpdater = setInterval(function () {
+if (process.env.HTTP_PORT) {
     request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
-        // console.log('error:', error); // Print the error if one occurred
-        // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        // console.log('body:', body); // Print the HTML for the Google homepage.
+        console.log('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
     });
-}, 1000);
 
+    const DDNSUpdater = setInterval(function () {
+        request('https://freedns.afraid.org/dynamic/update.php?TEV5Q1laVmVsMnFXcmExSTNDcDR1NXhjOjE4MDQwNTM1', function (error, response, body) {
+            // console.log('error:', error); // Print the error if one occurred
+            // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            // console.log('body:', body); // Print the HTML for the Google homepage.
+        });
+    }, 1000);
+}
 const httpServer = http.createServer(app);
 httpServer.listen(HTTPPort, () => {
     console.log('HTTP Server running on port' + HTTPPort);
