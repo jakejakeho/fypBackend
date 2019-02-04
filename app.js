@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 app.all('/oauth/token', obtainToken);
 
 // Routes which should handle requests
-app.use('/movies', authenticateRequest, movieRoutes);
+app.use('/movies', movieRoutes);
 app.use('/users/register', userRoutes);
 app.use('/users', authenticateRequest, userRoutes);
 
