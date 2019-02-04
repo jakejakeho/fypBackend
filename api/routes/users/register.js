@@ -51,6 +51,7 @@ router.post("/", upload.single('userImage'), (req, res, next) => {
         username: req.body.username,
         password: req.body.password,
         name: req.body.name,
+        email:req.body.email,
         userImage: userIcon
     });
     User.findOne({ username: req.body.username })
