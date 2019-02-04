@@ -10,7 +10,7 @@ const Response = OAuth2Server.Response;
 
 const movieRoutes = require('./api/routes/movies');
 const userRoutes = require('./api/routes/users');
-const registerRoutes = require('./api/routes/register');
+const userRegisterRoutes = require('./api/routes/users/register');
 
 app.oauth = new OAuth2Server({
 	model: require('./oauthModel.js'),
@@ -28,6 +28,7 @@ if(process.env.HTTP_PORT){
 }
 // app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 app.use(morgan('dev'));
+app.use('/file', express.static('file'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -47,7 +48,7 @@ app.all('/oauth/token', obtainToken);
 
 // Routes which should handle requests
 app.use('/movies', movieRoutes);
-app.use('/users/register', userRoutes);
+app.use('/users/register', userRegisterRoutes);
 app.use('/users', authenticateRequest, userRoutes);
 
 
@@ -88,7 +89,6 @@ function authenticateRequest(req, res, next) {
 
 	return app.oauth.authenticate(request, response)
 		.then(function (token) {
-
 			next();
 		}).catch(function (err) {
 
