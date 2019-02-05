@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 
-const Token = require('../models/token')
-const User = require('../models/user')
+const Token = require('../../models/token')
+const User = require('../../models/user')
 
 
 
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
                     doc.password = undefined;
                     console.log("From database" + doc);
                     if (doc) {
-                        res.status(200).json(doc);
+                        res.status(200).json(doc.profile);
                     } else {
                         res.status(404).json({
                             message: 'No valid entry found for provided ID'
