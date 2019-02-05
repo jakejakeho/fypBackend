@@ -9,7 +9,9 @@ const Request = OAuth2Server.Request
 const Response = OAuth2Server.Response;
 
 const movieRoutes = require('./api/routes/movies');
-const userRoutes = require('./api/routes/users');
+const userInfoRoutes = require('./api/routes/users/info');
+const userHistoryRoutes = require('./api/routes/users/history');
+const userRecommendRoutes = require('./api/routes/users/recommend');
 const userRegisterRoutes = require('./api/routes/users/register');
 
 app.oauth = new OAuth2Server({
@@ -44,12 +46,13 @@ app.use((req, res, next) => {
 });
 
 // oAuth token 
-app.all('/oauth/token', obtainToken);
-
-// Routes which should handle requests
-app.use('/movies', movieRoutes);
+app.all('/users/login', obtainToken);
 app.use('/users/register', userRegisterRoutes);
-app.use('/users', authenticateRequest, userRoutes);
+app.use('/users/info', authenticateRequest, userInfoRoutes);
+app.use('/users/history', authenticateRequest, userHistoryRoutes);
+app.use('/users/recommend', authenticateRequest, userRecommendRoutes);
+app.use('/movies', movieRoutes);
+
 
 
 app.use((req, res, next) => {

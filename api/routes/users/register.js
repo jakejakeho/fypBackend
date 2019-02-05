@@ -50,9 +50,11 @@ router.post("/", upload.single('userImage'), (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         username: req.body.username,
         password: req.body.password,
-        name: req.body.name,
-        email:req.body.email,
-        userImage: userIcon
+        profile: {
+            name: req.body.name,
+            email: req.body.email,
+            userImage: userIcon
+        }
     });
     User.findOne({ username: req.body.username })
         .exec()
@@ -60,7 +62,7 @@ router.post("/", upload.single('userImage'), (req, res, next) => {
             if (doc) {
                 doc.password = undefined;
                 console.log("From database" + doc);
-                res.status(500).json({error : "exisited"});
+                res.status(500).json({ error: "exisited" });
             } else {
                 user.save()
                     .then(result => {

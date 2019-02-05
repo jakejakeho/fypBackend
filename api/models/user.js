@@ -8,8 +8,8 @@ const userSchema = mongoose.Schema({
         email: String,
         userImage: String,
     }],
-    movieId: [{ id:String }],
-    history:[{
+    recommend: [{ movieId: String }],
+    history: [{
         movieId: String,
         startDate: Date,
         endDate: Date,
