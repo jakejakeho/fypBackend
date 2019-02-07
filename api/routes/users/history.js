@@ -65,6 +65,7 @@ router.post('/', (req, res, next) => {
                     if (doc) {
                         var history = {
                             movieId: req.body.movieId,
+                            rating: req.body.rating,
                             startDate: new Date(0).setUTCSeconds(req.body.startDate),
                             endDate: new Date(0).setUTCSeconds(req.body.endDate)
                         };

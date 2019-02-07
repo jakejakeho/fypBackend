@@ -13,7 +13,7 @@ const userInfoRoutes = require('./api/routes/users/info');
 const userHistoryRoutes = require('./api/routes/users/history');
 const userRecommendRoutes = require('./api/routes/users/recommend');
 const userRegisterRoutes = require('./api/routes/users/register');
-
+const userRatingRoutes = require('./api/routes/users/rating');
 app.oauth = new OAuth2Server({
 	model: require('./oauthModel.js'),
 	accessTokenLifetime: 60 * 60 * 24 * 21,
@@ -50,6 +50,7 @@ app.all('/users/login', obtainToken);
 app.use('/users/register', userRegisterRoutes);
 app.use('/users/info', authenticateRequest, userInfoRoutes);
 app.use('/users/history', authenticateRequest, userHistoryRoutes);
+app.use('/users/rating', authenticateRequest, userRatingRoutes);
 app.use('/users/recommend', authenticateRequest, userRecommendRoutes);
 app.use('/movies', movieRoutes);
 
