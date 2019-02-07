@@ -14,6 +14,11 @@ const userSchema = mongoose.Schema({
         startDate: Date,
         endDate: Date,
     }],
+    rating: [{
+        movieId: String,
+        rating: Number,
+        date: Date,
+    }]
 });
 
 module.exports = mongoose.model('user', userSchema);

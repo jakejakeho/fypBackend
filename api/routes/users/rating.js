@@ -7,7 +7,7 @@ const User = require('../../models/user')
 const Movie = require('../../models/movie')
 
 
-// get history
+// get rating
 router.get('/', (req, res, next) => {
     Token.findOne({ accessToken: req.headers.authorization.replace("Bearer ", "") })
         .exec()
@@ -18,21 +18,7 @@ router.get('/', (req, res, next) => {
                 .then(doc => {
                     console.log("From database" + doc);
                     if (doc) {
-                        let result = [];
-                        for (let index = 0; index < doc.history.length; index++) {
-                            let el = doc.history[index].movieId;
-                            if (result.indexOf(el) === -1) {
-                                result.push(el);
-                            }
-                        }
-                        console.log("result = " + result);
-                        Movie.find({
-                            'movieId': {
-                                $in: result
-                            }
-                        }, function (err, docs) {
-                            res.status(200).json(docs);
-                        });
+                        res.status(200).json(doc.rating);
                     } else {
                         res.status(404).json({
                             message: 'No valid entry found for provided ID'
@@ -52,7 +38,7 @@ router.get('/', (req, res, next) => {
         });
 });
 
-// insert history
+// insert rating
 router.post('/', (req, res, next) => {
     Token.findOne({ accessToken: req.headers.authorization.replace("Bearer ", "") })
         .exec()
@@ -63,15 +49,24 @@ router.post('/', (req, res, next) => {
                 .then(doc => {
                     console.log("From database" + doc);
                     if (doc) {
-                        var history = {
+                        var rating = {
                             movieId: req.body.movieId,
                             rating: req.body.rating,
-                            startDate: new Date(0).setUTCSeconds(req.body.startDate),
-                            endDate: new Date(0).setUTCSeconds(req.body.endDate)
+                            date: new Date(0).setUTCSeconds(req.body.date),
                         };
-                        doc.history.push(history);
+                        var found = false;
+                        for (var index = 0; index < doc.rating.length; index++) {
+                            if (doc.rating[index].movieId == rating.movieId) {
+                                doc.rating[index].rating = rating.rating;
+                                doc.rating[index].date = rating.date;
+                                found = true;
+                            }
+                        }
+                        if (!found) {
+                            doc.rating.push(rating);
+                        }
                         doc.save();
-                        res.status(200).json(doc.history);
+                        res.status(200).json(doc.rating);
                     } else {
                         res.status(404).json({
                             message: 'No valid entry found for provided ID'
