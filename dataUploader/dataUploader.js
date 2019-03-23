@@ -59,6 +59,7 @@ csv.fromPath("movies.csv", { headers: true })
                                 if (info != null && info.poster_path != null && info.overview != null) {
                                     dataArr[currentID].poster_path = "https://image.tmdb.org/t/p/original" + info.poster_path;
                                     dataArr[currentID].overview = info.overview;
+                                    dataArr[currentID].release_date = info.release_date;
                                 }
 
                                 request(videoURL[currentID], function (error, response, body) {
@@ -115,7 +116,7 @@ csv.fromPath("movies.csv", { headers: true })
                         });
                     }
                     numberOfItems++;
-                }, 751);
+                }, 1000);
             });
     });
 

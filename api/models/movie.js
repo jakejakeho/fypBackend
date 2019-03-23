@@ -9,6 +9,7 @@ const movieSchema = mongoose.Schema({
     overview: String,
     trailerId: String,
     actorName: String,
+    release_date: String,
 });
 
 module.exports = mongoose.model('Movie', movieSchema);
