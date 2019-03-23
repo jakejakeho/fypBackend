@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 
 const Movie = require('../models/movie')
 
-// get add movies
+// post add movies
 var perPage = 10;
-router.get('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
     Movie.find({ genres: new RegExp(req.body.genres, 'i') })
         .limit(perPage)
         .skip(perPage * parseInt(req.body.page))
