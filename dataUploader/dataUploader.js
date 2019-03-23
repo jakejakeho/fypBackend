@@ -15,7 +15,7 @@ var inital = 0;
 var numberOfItems = inital;
 var intervalID = 0;
 
-csv.fromPath("movies.csv", { headers: true })
+csv.fromPath("diff.csv", { headers: true })
     .on("data", data => {
         // push data in to array
         dataArr.push(data);
@@ -94,7 +94,6 @@ csv.fromPath("movies.csv", { headers: true })
 
 
                                         console.log(dataArr[currentID]);
-
                                         Movie.insertMany(dataArr[currentID]);
 
                                         // estimate time that all the task will finish
