@@ -6,7 +6,8 @@ const Movie = require('../models/movie')
 
 // get add movies
 router.get('/', (req, res, next) => {
-    Movie.find({"movieId": {"$lt": 9}})
+    Movie.find({ genres: /Adventure/i })
+        .sort('-release_date')
         .exec()
         .then(docs => {
             console.log(docs);
