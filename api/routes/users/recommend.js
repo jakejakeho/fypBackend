@@ -25,6 +25,7 @@ router.get('/', (req, res, next) => {
                                 result.push(el);
                             }
                         }
+                        console.log(result);
                         Movie.find({
                             'movieId': {
                                 $in: result
@@ -64,13 +65,14 @@ router.post('/', (req, res, next) => {
                     movieIds = req.body.movieId;
                     if (doc) {
                         //clear recommend array
-                        doc.recommend = {};
+                        var temp = [];
                         movieIds.forEach((Ids)=>{
                             var recommend = {
                                 movieId: Ids
                             };
-                            doc.recommend.push(recommend);
+                            temp.push(recommend);
                         });
+                        doc.recommend = temp;
                         doc.save();
                         console.log("updated" + doc);
                         res.status(200).json(doc.recommend);
