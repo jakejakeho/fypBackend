@@ -25,6 +25,7 @@ router.get('/', (req, res, next) => {
                                 result.push(el);
                             }
                         }
+                        console.log(result);
                         Movie.find({
                             'movieId': {
                                 $in: result
@@ -61,16 +62,23 @@ router.post('/', (req, res, next) => {
                 .exec()
                 .then(doc => {
                     console.log("From database" + doc);
+                    movieIds = req.body.movieId;
                     if (doc) {
-                        var recommend = {
-                            movieId: req.body.movieId,
-                        };
-                        doc.recommend.push(recommend);
+                        //clear recommend array
+                        var temp = [];
+                        movieIds.forEach((Ids)=>{
+                            var recommend = {
+                                movieId: Ids
+                            };
+                            temp.push(recommend);
+                        });
+                        doc.recommend = temp;
                         doc.save();
+                        console.log("updated" + doc);
                         res.status(200).json(doc.recommend);
-                    } else {
+                    }else {
                         res.status(404).json({
-                            message: 'No valid entry found for provided ID'
+                             message: 'No valid entry found for provided ID'
                         })
                     }
                 })
