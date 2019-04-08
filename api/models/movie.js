@@ -10,6 +10,9 @@ const movieSchema = mongoose.Schema({
     trailerId: String,
     actorName: String,
     release_date: String,
+    backdrop_path: [{
+        type: String
+    }],
 });
 
 module.exports = mongoose.model('Movie', movieSchema);
