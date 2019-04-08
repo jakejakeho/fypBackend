@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema({
         startDate: Date,
         endDate: Date,
     }],
+    genre_history: [{
+        genre: String,
+        date: Date,
+    }],
     rating: [{
         movieId: String,
         rating: Number,
