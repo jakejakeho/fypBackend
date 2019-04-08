@@ -10,7 +10,7 @@ router.post('/', (req, res, next) => {
     Movie.find({
         genres: new RegExp(req.body.genres, 'i'),
         title: new RegExp(req.body.search, 'i')
-    })
+    })  
         .limit(perPage)
         .skip(perPage * parseInt(req.body.page))
         .sort('-release_date')

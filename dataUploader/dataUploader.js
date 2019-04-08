@@ -65,8 +65,10 @@ csv.fromPath("diff.csv", { headers: true })
                                     request(imageURL[currentID], function (error, response, body) {
                                         var info = JSON.parse(body);
                                         dataArr[currentID].backdrop_path = [];
-                                        for (var i = 0; i < info.backdrops.length; i++) {
-                                            dataArr[currentID].backdrop_path.push(info.backdrops[i].file_path);
+                                        if (info != null && info.backdrops != null) {
+                                            for (var i = 0; i < info.backdrops.length; i++) {
+                                                dataArr[currentID].backdrop_path.push(info.backdrops[i].file_path);
+                                            }
                                         }
                                         request(videoURL[currentID], function (error, response, body) {
                                             // prase to object
@@ -103,7 +105,7 @@ csv.fromPath("diff.csv", { headers: true })
                                                 Movie.insertMany(dataArr[currentID]);
 
                                                 // estimate time that all the task will finish
-                                                var distance = (dataArr.length - currentID) * 1100;
+                                                var distance = (dataArr.length - currentID) * 1200;
                                                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                                                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                                                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -123,7 +125,7 @@ csv.fromPath("diff.csv", { headers: true })
                         });
                     }
                     numberOfItems++;
-                }, 1100);
+                }, 1200);
             });
     });
 
