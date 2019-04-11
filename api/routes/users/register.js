@@ -44,8 +44,11 @@ const upload = multer({
 
 // register
 router.post("/", upload.single('userImage'), (req, res, next) => {
-    console.log(req.file);
-    var userIcon = req.file.path.replace("\\", "/").replace("\\", "/");
+    var userIcon = 'file/usericon/09f005179b070c5edba53daaeeb7b7dde790.jpg';
+    if(req.file != null){
+        console.log(req.file);
+        var userIcon = req.file.path.replace("\\", "/").replace("\\", "/");
+    }
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         username: req.body.username,
