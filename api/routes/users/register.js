@@ -53,8 +53,11 @@ router.post("/", upload.single('userImage'), (req, res, next) => {
         profile: {
             name: req.body.name,
             email: req.body.email,
-            userImage: userIcon
-        }
+            userImage: userIcon,
+            favouriteGenre:req.body.favouriteGenre,
+            gender: req.body.gender,
+            DOB: new Date(0).setUTCSeconds(req.body.DOB),
+        },
     });
     User.findOne({ username: req.body.username })
         .exec()

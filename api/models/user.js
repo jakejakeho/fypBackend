@@ -7,6 +7,9 @@ const userSchema = mongoose.Schema({
         name: String,
         email: String,
         userImage: String,
+        favouriteGenre: String,
+        gender: String,
+        DOB: Date,
     }],
     recommend: [{ movieId: String }],
     history: [{
