@@ -12,17 +12,17 @@ var clientModel = require('./api/models/client'),
  * Dump the database content (for debug).
  */
 
-var dump = function() {
+var dump = function () {
 
-	clientModel.find(function(err, clients) {
-
+	clientModel.find(function (err, clients) {
 		if (err) {
+			c
 			return console.error(err);
 		}
 		console.log('clients', clients);
 	});
 
-	tokenModel.find(function(err, tokens) {
+	tokenModel.find(function (err, tokens) {
 
 		if (err) {
 			return console.error(err);
@@ -30,7 +30,7 @@ var dump = function() {
 		console.log('tokens', tokens);
 	});
 
-	userModel.find(function(err, users) {
+	userModel.find(function (err, users) {
 
 		if (err) {
 			return console.error(err);
@@ -43,22 +43,24 @@ var dump = function() {
  * Methods used by all grant types.
  */
 
-var getAccessToken = function(token) {
+var getAccessToken = function (token) {
 
 	return tokenModel.findOne({
 		accessToken: token
 	});
 };
 
-var getClient = function(clientId, clientSecret) {
-
-	return clientModel.findOne({
+var getClient = function (clientId, clientSecret) {
+	console.log(clientId + clientSecret);
+	result =  clientModel.findOne({
 		clientId: clientId,
 		clientSecret: clientSecret
 	});
+	console.log(result);
+	return result;
 };
 
-var saveToken = function(token, client, user) {
+var saveToken = function (token, client, user) {
 
 	token.client = {
 		id: client.clientId
@@ -80,7 +82,7 @@ var saveToken = function(token, client, user) {
  * Method used only by password grant type.
  */
 
-var getUser = function(username, password) {
+var getUser = function (username, password) {
 
 	return userModel.findOne({
 		username: username,
@@ -92,7 +94,7 @@ var getUser = function(username, password) {
  * Method used only by client_credentials grant type.
  */
 
-var getUserFromClient = function(client) {
+var getUserFromClient = function (client) {
 
 	return clientModel.findOne({
 		clientId: client.clientId,
