@@ -11,6 +11,7 @@ var apiURL = [];
 var videoURL = [];
 var actorURL = [];
 var imageURL = [];
+var linkArr = [];
 var inital = 0;
 var numberOfItems = inital;
 var intervalID = 0;
@@ -32,6 +33,7 @@ csv.fromPath("diff.csv", { headers: true })
                 var actorurl = "https://api.themoviedb.org/3/movie/" + tmdbId + "/credits?api_key=0f7f0c503ea285b9af1accef89a81dfd";
                 var imageurl = "https://api.themoviedb.org/3/movie/" + tmdbId + "/images?api_key=0f7f0c503ea285b9af1accef89a81dfd";
                 // save the api request in array
+                linkArr.push(data);
                 apiURL.push(url);
                 videoURL.push(videourl);
                 actorURL.push(actorurl);
@@ -49,9 +51,16 @@ csv.fromPath("diff.csv", { headers: true })
 
                     // remember the id 
                     const currentID = numberOfItems;
+                    var apiID = 0;
+                    for(var i = 0; i < linkArr.length; i++){
+                        if(dataArr[currentID].movieId == linkArr[i].movieId){
+                            apiID = i;
+                            break;
+                        }
+                    }
                     if (currentID < dataArr.length) {
                         // request from the online api server
-                        request(apiURL[currentID], function (error, response, body) {
+                        request(apiURL[apiID], function (error, response, body) {
                             if (!error && response.statusCode == 200) {
 
                                 // prase to object
@@ -62,7 +71,7 @@ csv.fromPath("diff.csv", { headers: true })
                                     dataArr[currentID].poster_path = info.poster_path;
                                     dataArr[currentID].overview = info.overview;
                                     dataArr[currentID].release_date = info.release_date;
-                                    request(imageURL[currentID], function (error, response, body) {
+                                    request(imageURL[apiID], function (error, response, body) {
                                         var info = JSON.parse(body);
                                         dataArr[currentID].backdrop_path = [];
                                         if (info != null && info.backdrops != null) {
@@ -70,7 +79,7 @@ csv.fromPath("diff.csv", { headers: true })
                                                 dataArr[currentID].backdrop_path.push(info.backdrops[i].file_path);
                                             }
                                         }
-                                        request(videoURL[currentID], function (error, response, body) {
+                                        request(videoURL[apiID], function (error, response, body) {
                                             // prase to object
                                             var info = JSON.parse(body);
 
@@ -80,7 +89,7 @@ csv.fromPath("diff.csv", { headers: true })
                                             }
 
 
-                                            request(actorURL[currentID], function (error, response, body) {
+                                            request(actorURL[apiID], function (error, response, body) {
                                                 // print the result
                                                 console.log("\n");
                                                 console.log(currentID);
