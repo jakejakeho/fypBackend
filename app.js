@@ -22,7 +22,7 @@ app.oauth = new OAuth2Server({
 });
 
 global.rootDir = path.resolve(__dirname);;
-mongoose.connect('mongodb+srv://admin:awesomefyp@cluster0-jjvpb.mongodb.net/test?retryWrites=true&w=majority'
+mongoose.connect('mongodb+srv://admin:awesomefyp@cluster0-jjvpb.gcp.mongodb.net/test?retryWrites=true&w=majority'
     , { useNewUrlParser: true });
 // app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 app.use(morgan('dev'));

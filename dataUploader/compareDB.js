@@ -12,7 +12,7 @@ const csvWriter = createCsvWriter({
     ]
 });
 // connect to database
-mongoose.connect('mongodb+srv://admin:awesomefyp@cluster0-jjvpb.mongodb.net/test?retryWrites=true&w=majority'
+mongoose.connect('mongodb+srv://admin:awesomefyp@cluster0-jjvpb.gcp.mongodb.net/test?retryWrites=true&w=majority'
     , { useNewUrlParser: true });
 
 var dataArr = [];
