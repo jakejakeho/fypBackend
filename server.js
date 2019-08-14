@@ -35,6 +35,6 @@ httpServer.listen(HTTPPort, () => {
     console.log('HTTP Server running on port' + HTTPPort);
 });
 
-https.createServer(options, app).listen(HTTPSPort, () => {
-    console.log('HTTPS Server running on port' + HTTPSPort);
-});
+// https.createServer(options, app).listen(HTTPSPort, () => {
+//     console.log('HTTPS Server running on port' + HTTPSPort);
+// });

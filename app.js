@@ -22,13 +22,8 @@ app.oauth = new OAuth2Server({
 });
 
 global.rootDir = path.resolve(__dirname);;
-if(process.env.HTTP_PORT){
-    mongoose.connect('mongodb://admin:awesomefyp@localhost:27017/dev?authSource=admin'
-    ,{useNewUrlParser:true});
-}else{
-    mongoose.connect('mongodb://admin:awesomefyp@fypbackend.mooo.com:27017/dev?authSource=admin'
-    ,{useNewUrlParser:true});
-}
+mongoose.connect('mongodb+srv://admin:awesomefyp@cluster0-jjvpb.mongodb.net/test?retryWrites=true&w=majority'
+    , { useNewUrlParser: true });
 // app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 app.use(morgan('dev'));
 app.use('/file', express.static('file'));
