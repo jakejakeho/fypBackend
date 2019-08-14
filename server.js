@@ -6,8 +6,8 @@ const request = require('request');
 
 
 const app = require('./app');
-const HTTPPort = process.env.HTTP_PORT || 3000;
-const HTTPSPort = process.env.HTTPS_PORT || 3001;
+const HTTPPort = process.env.PORT  || 3000;
+const HTTPSPort = process.env.PORT || 3001;
 
 const options = {
     cert: fs.readFileSync('./cert/fullchain.pem'),
